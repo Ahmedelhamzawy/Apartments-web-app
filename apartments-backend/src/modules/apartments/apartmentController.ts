@@ -61,7 +61,13 @@ export const addApartment = async (
   try {
     const newApartment = await apartmentService.create(req.body);
     res.status(201).json(newApartment);
-  } catch (err) {
+  } catch (err: any) {
+    // Handle unique constraint violation
+    if (err.code === 'P2002') {
+      return res.status(409).json({
+        message: "An apartment with this unit number already exists in this project"
+      });
+    }
     next(err);
   }
 };

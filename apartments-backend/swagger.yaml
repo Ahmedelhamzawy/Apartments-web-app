@@ -1,0 +1,123 @@
+openapi: 3.0.0
+info:
+  title: Apartments API
+  version: 1.0.0
+  description: Static API documentation for Apartments app
+
+servers:
+  - url: http://localhost:5000
+    description: Local development server
+
+components:
+  schemas:
+    Apartment:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        unit_name:
+          type: string
+          example: "Palm Hills Residence"
+        unit_number:
+          type: string
+          example: "A101"
+        unit_description:
+          type: string
+          example: "Modern apartment with garden view"
+        project:
+          type: string
+          example: "Palm Hills"
+        price:
+          type: number
+          example: 2500000
+        city:
+          type: string
+          example: "Cairo"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2025-11-05T14:55:37.694Z"
+
+paths:
+  /api/apartments:
+    get:
+      summary: Get all apartments
+      tags:
+        - Apartments
+      responses:
+        '200':
+          description: List of apartments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Apartment'
+    post:
+      summary: Create a new apartment
+      tags:
+        - Apartments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - unit_name
+                - unit_number
+                - unit_description
+                - project
+                - price
+                - city
+              properties:
+                unit_name:
+                  type: string
+                  example: "Mountain View Apartment"
+                unit_number:
+                  type: string
+                  example: "B202"
+                unit_description:
+                  type: string
+                  example: "Luxury apartment near the beach"
+                project:
+                  type: string
+                  example: "Mountain View"
+                price:
+                  type: number
+                  example: 3200000
+                city:
+                  type: string
+                  example: "Alexandria"
+      responses:
+        '201':
+          description: Apartment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Apartment'
+        '400':
+          description: Validation error
+
+  /api/apartments/{id}:
+    get:
+      summary: Get apartment by ID
+      tags:
+        - Apartments
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+          description: Apartment ID
+      responses:
+        '200':
+          description: Apartment object
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Apartment'
+        '404':
+          description: Apartment not found

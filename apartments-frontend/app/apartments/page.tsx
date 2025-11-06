@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import ApartmentTable from '@/components/apartments/ApartmentTable';
+import ApartmentList from '@/components/apartments/ApartmentList';
 import ApartmentFilters from '@/components/apartments/ApartmentFilter';
 import useApartments from '@/hooks/apartments/useApartments';
 
@@ -29,7 +29,7 @@ return (
       {loading ? (
         <div className="text-center py-5 text-muted">Loading apartments...</div>
       ) : (
-        <ApartmentTable apartments={apartments} />
+        <ApartmentList apartments={apartments} />
       )}
     </div>
   );

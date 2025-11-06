@@ -13,6 +13,7 @@ A full-stack apartment listing application built with Node.js/Express backend an
 
 ```bash
 ├── apartments-backend
+│   ├── Dockerfile
 │   ├── prisma
 │   │   └── migrations
 │   │       └── 20251105152215_apartments_migration
@@ -21,20 +22,35 @@ A full-stack apartment listing application built with Node.js/Express backend an
 │       ├── middlewares
 │       └── modules
 │           └── apartments
-└── apartments-frontend
-    ├── app
-    │   └── apartments
-    │       ├── [id]
-    │       
-    ├── components
-    │   └── apartments
-    ├── config
-    ├── hooks
-    │   └── apartments
-    ├── interfaces
-    ├── public
-    ├── services
-    └── types
+│               ├── apartmentController.ts
+│               ├── apartmentRoutes.ts
+│               ├── apartmentService.ts
+│               └── apartmentValidation.ts
+├── apartments-frontend
+│   ├── Dockerfile
+│   ├── app
+│   │   ├── page.tsx
+│   │   └── apartments
+│   │       ├── page.tsx
+│   │       └── [id]
+│   │           └── page.tsx
+│   ├── components
+│   │   └── apartments
+│   │       ├── ApartmentFilter.tsx
+│   │       ├── ApartmentInfo.tsx
+│   │       └── ApartmentTable.tsx
+│   ├── hooks
+│   │   └── apartments
+│   │       ├── useApartment.ts
+│   │       └── useApartments.ts
+│   ├── interfaces
+│   │   └── Apartment.ts
+│   ├── public
+│   ├── services
+│   │   └── api.ts
+│   └── types
+├── .env
+└── docker-compose.yml
 
 ```
 
@@ -151,4 +167,5 @@ POST /apartments
 
 ```bash
 docker-compose down --rmi all --volumes --remove-orphans
+
 ```

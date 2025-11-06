@@ -76,10 +76,9 @@ Once the containers are running:
 
 ### Application Overview
 
-This apartment management system allows users to:
+This apartment listing system allows users to:
 - View a list of all apartments
 - View detailed information about specific apartments
-- Add new apartments to the system
 - Search and filter apartments
 
 
@@ -169,3 +168,4 @@ POST /apartments
 docker-compose down --rmi all --volumes --remove-orphans
 
 ```
+

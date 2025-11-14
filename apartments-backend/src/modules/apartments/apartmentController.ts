@@ -3,14 +3,14 @@ import * as apartmentService from "./apartmentService";
 
 //controller to handle apartment related requests
 
-//get all apartments with optional filters if exist
+//get all apartments with optional filters and pagination
 export const getAllApartments = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const { search, city, minPrice, maxPrice } = req.query;
+    const { search, city, minPrice, maxPrice, page, limit } = req.query;
 
     const filters: any = {};
     if (city) {
@@ -31,8 +31,11 @@ export const getAllApartments = async (
       if (maxPrice) filters.price.lte = Number(maxPrice);
     }
 
-    const apartments = await apartmentService.getAll(filters);
-    res.json(apartments);
+    const pageNum = page ? Number(page) : 1;
+    const limitNum = limit ? Number(limit) : 9;
+
+    const result = await apartmentService.getAll(filters, pageNum, limitNum);
+    res.json(result);
   } catch (err) {
     next(err);
   }

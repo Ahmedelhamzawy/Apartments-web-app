@@ -1,8 +1,8 @@
 'use client';
 import { useParams } from 'next/navigation';
-import BackButton from '@/components/BackButton';
-import useApartment from '@/hooks/apartments/useApartment';
-import ApartmentInfo from '@/components/apartments/ApartmentInfo';
+import BackButton from '@/shared/components/BackButton';
+import useApartment from '@/modules/apartments/hooks/useApartment';
+import ApartmentInfo from '@/modules/apartments/components/ApartmentInfo';
 
 
 export default function ApartmentDetails() {
